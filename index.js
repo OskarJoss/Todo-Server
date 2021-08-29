@@ -9,8 +9,9 @@ const PORT = process.env.PORT || 8000;
 
 //temporary code to add user to req
 if (process.env.ENVIRONMENT === "development") {
+  const data = require("./test_data");
   app.use((req, res, next) => {
-    req.user = { username: process.env.TEST_USER_NAME };
+    req.user = data.users().user1;
     next();
   });
 }
