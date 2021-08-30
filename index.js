@@ -1,11 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
+
 const app = express();
 const router = require("./routes/");
-require("dotenv").config();
 const db = require("./utils/db");
-
 const PORT = process.env.PORT || 8000;
+
+// data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //temporary code to add user to req
 if (process.env.ENVIRONMENT === "development") {
@@ -16,6 +20,7 @@ if (process.env.ENVIRONMENT === "development") {
   });
 }
 
+//routes
 app.use("/", router);
 
 mongoose
