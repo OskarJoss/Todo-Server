@@ -17,7 +17,7 @@ exports.initialData = async () => {
   const todoCount = await Todo.countDocuments();
   if (todoCount === 0) {
     try {
-      Todo.insertMany(_.map(data.todos(), (t) => t));
+      await Todo.insertMany(_.map(data.todos(), (t) => t));
       console.log(`Added test todos`);
     } catch (error) {
       console.log("initialData error: ", error);
